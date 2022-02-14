@@ -37,11 +37,13 @@ export class AppService {
       'rinkeby',
     );
     global.FormData = require('form-data');
-    global.window = {
+    (global.window as any) = {
       fetch: require('node-fetch'),
-      dispatchEvent: () => {},
+      dispatchEvent: () => {
+        return true;
+      },
     };
-    global.CustomEvent = function CustomEvent() {
+    (global.CustomEvent as any) = function CustomEvent() {
       return;
     };
   }
